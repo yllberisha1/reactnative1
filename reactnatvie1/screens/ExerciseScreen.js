@@ -5,7 +5,9 @@ const ExeciseScreen = () => {
     let message = "This is the Exercise Screen";
     message = "hi there "
     return (
-        <Text>{message}</Text>
+        <View>
+            <Text>{message}</Text>
+        </View>
     )
 }
 
