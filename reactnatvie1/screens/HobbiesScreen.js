@@ -2,24 +2,24 @@ import React from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 
 const students = [
-    {name: "bbbbb", surname: "aaaa", age: 20},
-    {name: "eeee", surname: "ttttt", age: 22},
-    {name: "rrrr", surname: "uuuuuu", age: 21},
-    {name: "ddddd", surname: "vvvvvv", age: 19},
+    { id: 1, hobby: "Football" },
+    { id: 2, hobby: "Reading" },
+    { id: 3, hobby: "Traveling" },
+    { id: 4, hobby: "Cooking" },
 ];
 
-const ListScreen = () => {
+const HobbiesScreen = () => {
     return (
         <View style={styles.container}> 
-        <Text>List of Students</Text>
-        <FlatList
+        <Text>Hobbies</Text>
+        <FlatList style={styles.FlatList}
             data={students}
-            horizontal={true}
+            horizontal={false}
             showsHorizontalScrollIndicator={false}
             keyExtractor={student=> student.name}
             renderItem={({item}) => {
                 return (
-                    <Text style={styles.studentWrapper}>{item.name} {item.surname} - {item.age}</Text>
+                    <Text style={styles.studentWrapper}> {item.hobby} </Text>
                 );
             }}
         />
@@ -43,7 +43,11 @@ const styles = StyleSheet.create({
     },
     studentWrapper: {
         fontSize: 20,
-        marginRight: 20,
+        marginBottom: 20,
+        height: 300,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',   
         padding: 10,
         backgroundColor: '#f0f0f0',
         borderRadius: 5,
@@ -52,7 +56,8 @@ const styles = StyleSheet.create({
 
 });
 
-export default ListScreen;
+export default HobbiesScreen;
 
 
     
+
