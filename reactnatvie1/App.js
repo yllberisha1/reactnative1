@@ -7,6 +7,7 @@ import ExerciseScreen from './screens/ExerciseScreen';
 import ListScreen from './screens/ListScreen';
 import StudentInfoScreen from './screens/StudentInfoScreen';
 import HobbiesScreen from './screens/HobbiesScreen';
+import ButtonScreen from './screens/ButtonScreen';
 
 const Stack = createStackNavigator();
 
@@ -14,11 +15,12 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-      initialRouteName='Hobbies'
+      initialRouteName='Button'
       screenOptions={{ 
-        headerTitle: 'My App',
+        headerTitle: 'App',
       }}
       >
+        <Stack.Screen name = "Button" component={ButtonScreen} />
         <Stack.Screen name="Hobbies" component={HobbiesScreen} />
         <Stack.Screen name="StudentInfo" component={StudentInfoScreen} />
         <Stack.Screen name="Main" component={MainScreen} />
