@@ -11,6 +11,7 @@ import ButtonScreen from './screens/ButtonScreen';
 import MenuScreen from './screens/MenuScreen';
 import StudentsScreen from './screens/StudentsScreen';
 
+
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -19,7 +20,7 @@ export default function App() {
       <Stack.Navigator
       initialRouteName='Menu'
       screenOptions={{ 
-        headerTitle: 'App',
+        headerTitle: 'Students',
       }}
       >
         <Stack.Screen name="Students" component={StudentsScreen} />
