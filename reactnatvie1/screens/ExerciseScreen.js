@@ -1,15 +1,27 @@
-import React  from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
-const ExeciseScreen = () => {
-    let message = "This is the Exercise Screen";
-    message = "hi there "
-    return (
-        <View>
-            <Text>{message}</Text>
-        </View>
-    )
-}
+const ExerciseScreen = () => {
+  const message = 'This is the Exercise Screen';
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>{message}</Text>
+    </View>
+  );
+};
 
-export default ExeciseScreen;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  text: {
+    fontSize: 18,
+    fontWeight: '600',
+  },
+});
+
+export default ExerciseScreen;
 

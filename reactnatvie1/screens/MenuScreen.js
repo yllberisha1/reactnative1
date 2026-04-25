@@ -6,10 +6,10 @@ const MenuScreen = (props) => {
   return (
     <View>
       <Text style={styles.Text}>Menu Screen</Text>
-      <Button title="Go to  Screen" onPress={() => props.navigation.navigate('Button')} />
+      <Button title="Go to Screen" color="black" onPress={() => props.navigation.navigate('Button')} />
     
     <TouchableOpacity onPress={() => props.navigation.navigate('Students')}
-      style = {styles.btn}>
+      style={styles.btn}>
       <Text style={styles.btnText}>Go to Students Screen</Text>
     </TouchableOpacity> 
     </View>
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   btn: {
-    backgroundColor: '#007AFF',
+    backgroundColor: '#000',
     marginVertical: 10,
     paddingVertical: 10,
 },

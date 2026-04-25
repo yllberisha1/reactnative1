@@ -1,101 +1,184 @@
 import React from "react";
 import {
   Text,
-  Image,
   View,
   StyleSheet,
+  Image,
   TouchableOpacity,
-} from "react-native-web";
+  ScrollView,
+} from "react-native";
 
-const ProfileScreen = ({ navigation, props }) => {
+const ProfileScreen = ({ navigation, route }) => {
+  const name = route?.params?.name || "JOHN DOE";
+  const image = route?.params?.image || require('../assets/avatar1.png');
+  const description =
+    route?.params?.description ||
+    "We're passionate about creating beautiful design for startups & leading brands";
+
   return (
-    <View style={styles.container}>
-
-      {/* TOP IMAGE */}
-      <View style={styles.top}>
-        <Image source={props.image} style={styles.img} />
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      {/* Top Blue Header */}
+      <View style={styles.header}>
+        {image && <Image source={image} style={styles.avatar} />}
       </View>
 
-      {/* BOTTOM CONTENT */}
-      <View style={styles.bottom}>
+      {/* White Card */}
+      <View style={styles.card}>
+        <Text style={styles.name}>{name.toUpperCase()}</Text>
+        <Text style={styles.role}>UI/UX Designer</Text>
+        <Text style={styles.description}>{description}</Text>
 
-        <View style={styles.card}>
-          <Text style={styles.name}>{props.name}</Text>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("Projects")}
+        >
+          <Text style={styles.buttonText}>HIRE HIM</Text>
+        </TouchableOpacity>
+      </View>
 
-          <Text style={styles.description} numberOfLines={3}>
-            {props.description}
-          </Text>
+      {/* Projects Header */}
+      <View style={styles.projectRow}>
+        <Text style={styles.projectTitle}>PROJECTS</Text>
 
-          {/* NAV BUTTON */}
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate("Projects")}
-          >
-            <Text style={styles.buttonText}>See All Projects</Text>
-          </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.smallButton}
+          onPress={() => navigation.navigate("Projects")}
+        >
+          <Text style={styles.smallButtonText}>View All</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Project Cards */}
+      <View style={styles.projectsContainer}>
+        <View style={styles.projectCard}>
+          <Image
+            source={{
+              uri: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80',
+            }}
+            style={styles.projectImage}
+          />
         </View>
 
+        <View style={styles.projectCard}>
+          <Image
+            source={{
+              uri: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80',
+            }}
+            style={styles.projectImage}
+          />
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#f5f5f5",
   },
 
-  top: {
-    flex: 1,
+  header: {
+    backgroundColor: "#6ec6e8",
+    height: 280,
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#f4f4f4",
   },
 
-  bottom: {
-    flex: 1,
-    padding: 15,
-    backgroundColor: "#fff",
-  },
-
-  img: {
+  avatar: {
     width: 180,
     height: 180,
-    borderRadius: 90,
+    resizeMode: "contain",
   },
 
   card: {
-    backgroundColor: "#fafafa",
+    backgroundColor: "white",
+    marginHorizontal: 25,
+    marginTop: -40,
+    borderRadius: 25,
     padding: 20,
-    borderRadius: 12,
     alignItems: "center",
+    elevation: 5,
   },
 
   name: {
-    fontSize: 22,
+    fontSize: 28,
     fontWeight: "bold",
-    marginBottom: 8,
-    textAlign: "center",
+  },
+
+  role: {
+    fontSize: 18,
+    color: "#555",
+    marginTop: 5,
   },
 
   description: {
-    fontSize: 14,
-    color: "#555",
     textAlign: "center",
-    marginBottom: 10,
+    color: "#666",
+    marginTop: 10,
+    lineHeight: 22,
   },
 
   button: {
-    marginTop: 10,
-    backgroundColor: "#111",
+    backgroundColor: '#000',
     paddingVertical: 12,
-    borderRadius: 25,
-    paddingHorizontal: 25,
+    paddingHorizontal: 35,
+    borderRadius: 30,
+    marginTop: 20,
   },
 
   buttonText: {
-    color: "#fff",
-    fontWeight: "600",
+    fontWeight: 'bold',
+    color: '#fff',
+    fontSize: 16,
+  },
+
+  projectRow: {
+    marginTop: 30,
+    marginHorizontal: 25,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+
+  projectTitle: {
+    fontSize: 24,
+    fontWeight: "bold",
+  },
+
+  smallButton: {
+    backgroundColor: '#000',
+    paddingHorizontal: 18,
+    paddingVertical: 8,
+    borderRadius: 20,
+  },
+  smallButtonText: {
+    color: "white",
+    fontWeight: "bold",
+  },
+
+  projectsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginHorizontal: 20,
+    marginTop: 20,
+    marginBottom: 30,
+  },
+
+  projectCard: {
+    width: "47%",
+    backgroundColor: "white",
+    borderRadius: 20,
+    overflow: "hidden",
+    elevation: 4,
+  },
+
+  projectImage: {
+    width: "100%",
+    height: 140,
+    resizeMode: "cover",
   },
 });
 
