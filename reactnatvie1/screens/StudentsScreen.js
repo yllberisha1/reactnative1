@@ -1,11 +1,17 @@
 import React from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import StudentDetalis from "../components/StudentDetalis";
 
 const StudentsScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-
       <Text style={styles.title}>Students Screen</Text>
+
+      <StudentDetalis
+        name="YLL BERISHA"
+        description="Programmer"
+        image={require("../assets/avatar1.png")}
+      />
 
       {/* GO TO PROFILE BUTTON */}
       <TouchableOpacity
@@ -20,7 +26,6 @@ const StudentsScreen = ({ navigation }) => {
       >
         <Text style={styles.buttonText}>Go to Profile</Text>
       </TouchableOpacity>
-
     </View>
   );
 };

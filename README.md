@@ -1,22 +1,30 @@
-# 1. Set correct Expo version
+# 1. Create app
+npx create-expo-app mobileApp
+cd mobileApp
+
+# 2. Ensure Expo SDK 54
 npm install expo@^54.0.0
 
-# 2. Fix dependency versions
+# 3. Fix dependencies
 npx expo install --fix
 
-# 3. Install Expo-compatible native deps
-npx expo install react-native-gesture-handler react-native-screens react-native-safe-area-context
+# 4. Install native dependencies
+npx expo install react-native-screens react-native-safe-area-context react-native-gesture-handler
 npx expo install react-native-web react-dom @expo/metro-runtime
 
-# 4. Install JS libraries
-npm install @react-navigation/native @react-navigation/stack @expo/ngrok
+# 5. Install navigation (modern)
+npm install @react-navigation/native
+npm install @react-navigation/native-stack
 
-# 5. Remove duplicate dependencies
-npm dedupe
+# 6. Optional: tunnel support
+npm install @expo/ngrok
+
+# 7. (Only if issues) clean duplicates
 npm why react-native
+npm dedupe
 
-# 6. Diagnose issues
+# 8. Diagnose
 npx expo-doctor
 
-# 7. Start project
-npx expo start --tunnel
+# 9. Start app
+npx expo start --tunnelS
