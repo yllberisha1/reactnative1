@@ -27,4 +27,4 @@ npm dedupe
 npx expo-doctor
 
 # 9. Start app
-npx expo start --tunnelS
+npx expo start --tunnel

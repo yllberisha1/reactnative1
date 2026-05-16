@@ -10,9 +10,10 @@ import HobbiesScreen from './screens/HobbiesScreen';
 import ButtonScreen from './screens/ButtonScreen';
 import MenuScreen from './screens/MenuScreen';
 import StudentsScreen from './screens/StudentsScreen';
-
 import ProjectsScreen from './screens/ProjectsScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import PostScreen from './screens/PostsScreen';
+import AlbumScreen from './screens/AlbumScreen';
 
 const Stack = createStackNavigator();
 
@@ -40,6 +41,9 @@ export default function App() {
         <Stack.Screen name="Main" component={MainScreen} />
         <Stack.Screen name="Exercise" component={ExerciseScreen} />
         <Stack.Screen name="List" component={ListScreen} />
+        <Stack.Screen name="Posts" component={PostScreen} />
+        <Stack.Screen name="Album" component={AlbumScreen} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
