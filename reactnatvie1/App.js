@@ -14,6 +14,7 @@ import ProjectsScreen from './screens/ProjectsScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import PostScreen from './screens/PostsScreen';
 import AlbumScreen from './screens/AlbumScreen';
+import ProduktScreen from './screens/ProduktScreen';
 
 const Stack = createStackNavigator();
 
@@ -23,16 +24,11 @@ export default function App() {
       <StatusBar style="auto" />
 
       <Stack.Navigator
-        initialRouteName="Menu"
+        initialRouteName="Main"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="Profile" component={ProfileScreen} />
-
-        <Stack.Screen
-          name="Projects"
-          component={ProjectsScreen}
-        />
-
+        <Stack.Screen name="Projects"component={ProjectsScreen}/>
         <Stack.Screen name="Students" component={StudentsScreen} />
         <Stack.Screen name="Menu" component={MenuScreen} />
         <Stack.Screen name="Button" component={ButtonScreen} />
@@ -43,6 +39,7 @@ export default function App() {
         <Stack.Screen name="List" component={ListScreen} />
         <Stack.Screen name="Posts" component={PostScreen} />
         <Stack.Screen name="Album" component={AlbumScreen} />
+        <Stack.Screen name="Produkt" component={ProduktScreen} />
 
       </Stack.Navigator>
     </NavigationContainer>
