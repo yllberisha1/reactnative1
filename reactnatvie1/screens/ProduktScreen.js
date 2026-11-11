@@ -1,95 +1,213 @@
+
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
+import {
+	View,
+	Text,
+	StyleSheet,
+	Image,
+	TouchableOpacity,
+	ScrollView
+} from 'react-native';
+
 import product from '../data/produkt.json';
 
-const ProduktScreen = ({ navigation, route }) => {
-	const prod = route?.params?.product || product;
+const ProduktScreen = ({ navigation }) => {
+	const products = Array.isArray(product) ? product : [product];
 
 	return (
-		<ScrollView contentContainerStyle={styles.container}>
-			<TouchableOpacity style={styles.logoContainer} onPress={() => navigation.goBack()}>
-				<Text style={styles.logo}>✔</Text>
-			</TouchableOpacity>
+		<View style={styles.mainContainer}>
+			<ScrollView contentContainerStyle={styles.container}>
 
-			<Image source={{ uri: prod.image }} style={styles.image} resizeMode="contain" />
+				<View style={styles.categories}>
+					<Text style={styles.categoryTab}>Tablet</Text>
+					<Text style={styles.categoryTab}>Mouse</Text>
+					<Text style={styles.categoryTab}>Keyboard</Text>
+				</View>
 
-			<Text style={styles.title}>{prod.name}</Text>
-			<Text style={styles.category}>{prod.category}</Text>
+				<Text style={styles.heading}>
+					Most popular products
+				</Text>
 
-			<Text style={styles.description}>{prod.description}</Text>
+				{products.slice(0, 3).map((prod, index) => (
+					<TouchableOpacity
+						key={index}
+						style={styles.productRow}
+						onPress={() =>
+							navigation.navigate('ProduktScreen', {
+								product: prod
+							})
+						}
+					>
+						<Image
+							source={{ uri: prod.image }}
+							style={styles.image}
+							resizeMode="cover"
+						/>
 
-			<View style={styles.dotsRow}>
-				<View style={[styles.dot, { backgroundColor: '#1b75bc' }]} />
-				<View style={[styles.dot, { backgroundColor: '#3bb273' }]} />
-				<View style={[styles.dot, { backgroundColor: '#6b6b6b' }]} />
+						<View style={styles.productInfo}>
+							<Text style={styles.title}>
+								{prod.name}
+							</Text>
+
+							<Text style={styles.category}>
+								{prod.category}
+							</Text>
+
+							<Text style={styles.description} numberOfLines={3}>
+								{prod.description}
+							</Text>
+
+							<Text style={styles.price}>
+								${prod.price}
+							</Text>
+						</View>
+					</TouchableOpacity>
+				))}
+
+				<TouchableOpacity style={styles.viewMore}>
+					<Text style={styles.viewMoreText}>
+						View More
+					</Text>
+				</TouchableOpacity>
+
+			</ScrollView>
+
+			<View style={styles.bottomNav}>
+				<TouchableOpacity style={styles.navItem}>
+					<Text style={styles.navIcon}>⌂</Text>
+					<Text style={styles.navText}>Home</Text>
+				</TouchableOpacity>
+
+				<TouchableOpacity
+					style={styles.navItem}
+					onPress={() => navigation.navigate('About')}
+				>
+					<Text style={styles.navIcon}>▣</Text>
+					<Text style={styles.navText}>About</Text>
+				</TouchableOpacity>
 			</View>
-
-			<Text style={styles.price}>{prod.price}$</Text>
-		</ScrollView>
+		</View>
 	);
 };
 
 const styles = StyleSheet.create({
-	container: {
-		flexGrow: 1,
-		alignItems: 'center',
+	mainContainer: {
+		flex: 1,
 		backgroundColor: '#fff',
-		paddingTop: 30,
-		paddingHorizontal: 20,
-		paddingBottom: 40,
 	},
-	logoContainer: {
-		position: 'absolute',
-		top: 10,
-		alignSelf: 'center',
-		zIndex: 10,
+
+	container: {
+		paddingHorizontal: 22,
+		paddingTop: 20,
+		paddingBottom: 25,
 	},
-	logo: {
-		fontSize: 24,
-		color: '#000',
+
+	categories: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		marginBottom: 25,
 	},
+
+	categoryTab: {
+		fontSize: 15,
+		color: '#222',
+		fontWeight: '500',
+	},
+
+	heading: {
+		fontSize: 22,
+		fontWeight: 'bold',
+		color: '#111',
+		marginBottom: 25,
+	},
+
+	productRow: {
+		flexDirection: 'row',
+		marginBottom: 30,
+		alignItems: 'flex-start',
+	},
+
 	image: {
-		width: '100%',
-		height: 220,
-		marginTop: 20,
+		width: 112,
+		height: 132,
+		borderRadius: 12,
+		backgroundColor: '#eee',
 	},
+
+	productInfo: {
+		flex: 1,
+		marginLeft: 12,
+	},
+
 	title: {
-		fontSize: 28,
-		fontWeight: '700',
-		color: '#0b5a8a',
-		marginTop: 18,
-		textAlign: 'center',
+		fontSize: 17,
+		fontWeight: 'bold',
+		color: '#111',
 	},
+
 	category: {
 		fontSize: 14,
-		color: '#333',
-		marginTop: 8,
-		textAlign: 'center',
+		color: '#24c8e6',
+		marginTop: 3,
 	},
+
 	description: {
-		fontSize: 12,
-		color: '#666',
-		marginTop: 12,
-		textAlign: 'center',
-		lineHeight: 18,
-		paddingHorizontal: 10,
-	},
-	dotsRow: {
-		flexDirection: 'row',
-		marginTop: 18,
-		gap: 10,
-	},
-	dot: {
-		width: 18,
-		height: 18,
-		borderRadius: 9,
-		marginHorizontal: 6,
-	},
-	price: {
-		fontSize: 44,
-		fontWeight: '800',
+		fontSize: 14,
+		fontStyle: 'italic',
 		color: '#333',
-		marginTop: 18,
+		marginTop: 3,
+		lineHeight: 18,
+	},
+
+	price: {
+		alignSelf: 'flex-start',
+		backgroundColor: '#343d52',
+		color: '#fff',
+		fontSize: 15,
+		fontWeight: 'bold',
+		borderRadius: 15,
+		paddingHorizontal: 7,
+		marginTop: 5,
+	},
+
+	viewMore: {
+		backgroundColor: '#20c8e9',
+		height: 56,
+		borderRadius: 10,
+		alignItems: 'center',
+		justifyContent: 'center',
+		marginTop: 0,
+		marginBottom: 5,
+	},
+
+	viewMoreText: {
+		color: '#fff',
+		fontSize: 16,
+		fontWeight: 'bold',
+	},
+
+	bottomNav: {
+		height: 65,
+		backgroundColor: '#343d52',
+		flexDirection: 'row',
+		justifyContent: 'space-around',
+		alignItems: 'center',
+	},
+
+	navItem: {
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+
+	navIcon: {
+		fontSize: 25,
+		color: '#fff',
+	},
+
+	navText: {
+		fontSize: 13,
+		color: '#ddd',
+		marginTop: 2,
 	},
 });
 

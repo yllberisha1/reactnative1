@@ -1,7 +1,9 @@
+
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import StackNavigator from './navigator/StackNavigator';
+
+import PopularProductsScreen from './screens/PopularProductsScreen';
 
 import MainScreen from './screens/MainScreen';
 import ExerciseScreen from './screens/ExerciseScreen';
@@ -25,11 +27,16 @@ export default function App() {
       <StatusBar style="auto" />
 
       <Stack.Navigator
-        initialRouteName="Menu"
+        initialRouteName="PopularProducts"
         screenOptions={{ headerShown: false }}
       >
+        <Stack.Screen
+          name="PopularProducts"
+          component={PopularProductsScreen}
+        />
+
         <Stack.Screen name="Profile" component={ProfileScreen} />
-        <Stack.Screen name="Projects"component={ProjectsScreen}/>
+        <Stack.Screen name="Projects" component={ProjectsScreen} />
         <Stack.Screen name="Students" component={StudentsScreen} />
         <Stack.Screen name="Menu" component={MenuScreen} />
         <Stack.Screen name="Button" component={ButtonScreen} />
@@ -41,28 +48,7 @@ export default function App() {
         <Stack.Screen name="Posts" component={PostScreen} />
         <Stack.Screen name="Album" component={AlbumScreen} />
         <Stack.Screen name="Produkt" component={ProduktScreen} />
-
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-
-
-
-export default function App() {
-  return (
-    <NavigationContainer>
-      <StackNavigator/>
-    </NavigationContainer>
-  );
-}
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
